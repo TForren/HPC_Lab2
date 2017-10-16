@@ -1,29 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
+
+/* paths */
+int acfg;
+int acf;
+int abdefg;
+int abdfg;
+int abdef;
+int abdf;
+
+/* edges */
+int ab;
+int ac;
+int bd;
+int cf;
+int fg;
+int de;
+int df;
+int ef;
+int fEND;
+int gEND;
 
 static unsigned t1, t2, t3;
-
+int gnf[7] = {0,0,0,0,0,0,0};
            //0,1,2,3,4,5,6
            //A,B,C,D,E,F,G
-int nf[7] = {0,0,0,0,0,0,0};
 void func(int a1, int a2, int a3)
 {
 	int i,j,k;
-                //nodes
-	if(a1){       nf[0]++; 
-		i++;        nf[1]++;
-		if(a2){     nf[3]++;
-			j++;      nf[4]++;
-		}         
+  int nf[7] = {0,0,0,0,0,0,0};
+  
+  nf[0]++;gnf[0]++;
+	if(a1){
+    ab++;
+    nf[1]++;gnf[1]++;
+		i++;
+    nf[3]++;gnf[3]++;
+    bd++;
+    if(a2){
+      de++;
+      nf[4]++;gnf[4]++;
+      j++;
+      ef++;
+		} else {df++;};
 	} else {
-		k++;        nf[2]++;
+    ac++;
+    nf[2]++;gnf[2]++;
+		k++;
+    cf++;
 	}
 
-	if(a3){       nf[5]++;
-		k++;        nf[6]++;
-	}
- 
+  nf[5]++;gnf[5]++;
+	if(a3){
+    fg++;
+    nf[6]++;gnf[6]++;
+		k++;
+    gEND++;
+	} else {fEND++;};
+
+  if (nf[0]==1 && nf[1]==0 && nf[2]==1 && nf[3]==0 && nf[4]==0 && nf[5]==1 && nf[6]==1) { acfg++; };
+  if (nf[0]==1 && nf[1]==0 && nf[2]==1 && nf[3]==0 && nf[4]==0 && nf[5]==1 && nf[6]==0) { acf++; };
+  if (nf[0]==1 && nf[1]==1 && nf[2]==0 && nf[3]==1 && nf[4]==1 && nf[5]==1 && nf[6]==1) { abdefg++; };
+  if (nf[0]==1 && nf[1]==1 && nf[2]==0 && nf[3]==1 && nf[4]==1 && nf[5]==1 && nf[6]==0) { abdef++; };
+  if (nf[0]==1 && nf[1]==1 && nf[2]==0 && nf[3]==1 && nf[4]==0 && nf[5]==1 && nf[6]==1) { abdfg++; };
+  if (nf[0]==1 && nf[1]==1 && nf[2]==0 && nf[3]==1 && nf[4]==0 && nf[5]==1 && nf[6]==0) { abdf++; };
+
 }
  
 /* No profiling for code below*/
@@ -61,16 +104,37 @@ int main()
 		a1 = (rand() > t1);
 		a2 = (rand() > t2);
 		a3 = (rand() > t3);
-
+  
 		func(a1, a2, a3);
   }
 
 	/* Print out your profiling results here */
-	for (i=0; i<7; i++){
+  printf("\nnodes\n");
+  for (i = 0; i<7; i++) {
     char c = (char)65+i;
-    printf("%c: %d ",c,nf[i]); 
+    printf("%c: %d ",c,gnf[i]);
   }
+  printf("\n\n");
+  
+  printf("paths:\n");
+  printf("acfg: %d\n",acfg);
+  printf("acf: %d\n",acf);
+  printf("abdefg: %d\n",abdefg);
+  printf("abdfg: %d\n",abdfg);
+  printf("abdf: %d\n",abdf);
+
   printf("\n");
+
+  printf("edges:\n");
+  printf("ab: %d\n", ab);
+  printf("ac: %d\n", ac);
+  printf("bd: %d\n", bd);
+  printf("cf: %d\n", cf);
+  printf("de: %d\n", de);
+  printf("df: %d\n", df);
+  printf("fg: %d\n", fg);
+  printf("fEND: %d\n", fEND);
+  printf("gEND: %d\n", gEND);
  
 	return EXIT_SUCCESS;
 }
