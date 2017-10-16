@@ -4,50 +4,55 @@
 
 static unsigned t1, t2, t3, t4;
 
-int na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm;
+int ab,ag,bc,gi,gh,ce,cd,ek,ik,df,hj,kl,lm,km,fm,jm,mend;
 
 void func(int a1, int a2, int a3, int a4)
 {
 	int i,j,k;
-  na++;
+
 	if(a1){
-    nb++;
+    ab++;
 		i++;
-    nc++;
+    bc++;
 		if(a2){
-      nd++;
+      cd++;
 			j++;
 		} else {
-      ne++;
+      ce++;
 			i++;
+      ek++;
 			goto b1;
 		}
 
-    nf++;
+    df++;
 		k++;
+    fm++;
 		goto b2;
 	} else {
-    ng++;
+    ag++;
 		if(a3){
-      nh++;
+      gh++;
 			j++;
 		} else {
-      ni++;
+      gi++;
 			k++;
+      ik++;
 			goto b1;
 		}
 
-    nj++;
-		k++;
+		hj++;
+    k++;
+    jm++;
 		goto b2;
 	}
 
-b1: nk++;if(a4){
-    nl++;
+b1: if(a4){
+    kl++;
 		j++;
-	}
+    lm++;
+	} else {km++;};
 
-b2: nm++;k++;
+b2: k++; mend++;
 }
 
 /* Input set 1 */
@@ -91,11 +96,22 @@ int main()
 	}
 
 	/* Print out your profiling results here */
-  int intvals[8] = {na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm};
-  for(i=0;i<8;i++) {
-    char c = (char)65+i;
-    printf("%c: %d\n", c, intvals[i]);
-  }  
+  printf("Edges\n");	
+  printf("ab: %d\n", ab);
+  printf("ag: %d\n", ag);
+  printf("bc: %d\n", bc);
+  printf("gi: %d\n", gi);
+  printf("gh: %d\n", gh);
+  printf("ce: %d\n", ce);
+  printf("cd: %d\n", cd);
+  printf("ek: %d\n", ek);
+  printf("ik: %d\n", df);
+  printf("hj: %d\n", hj);
+  printf("kl: %d\n", kl);
+  printf("jm: %d\n", jm);
+  printf("km: %d\n", km);
+  printf("lm: %d\n", lm);
+  printf("mend: %d\n", mend);
 	return EXIT_SUCCESS;
 }
 
