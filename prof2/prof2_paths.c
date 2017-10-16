@@ -4,11 +4,18 @@
 
 static unsigned t1, t2, t3, t4;
 
+int abcdfm;
+int abcekm;
+int abceklm;
+int aghjm;
+int agikm;
+int agiklm;
 int na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm;
 
 void func(int a1, int a2, int a3, int a4)
 {
 	int i,j,k;
+  na=0,nb=0,nc=0,nd=0,ne=0,nf=0,ng=0,nh=0,ni=0,nj=0,nk=0,nl=0,nm=0;
   na++;
 	if(a1){
     nb++;
@@ -48,6 +55,13 @@ b1: nk++;if(a4){
 	}
 
 b2: nm++;k++;
+
+if (na && nb && nc && nd && !ne && nf && !ng && !nh && !ni && !nj && !nk && !nl && nm) abcdfm++; 
+if (na && nb && nc && !nd && ne && !nf && !ng && !nh && !ni && !nj && nk && !nl && nm) abcekm++; 
+if (na && nb && nc && !nd && ne && !nf && !ng && !nh && !ni && !nj && nk && nl && nm) abceklm++; 
+if (na && !nb && !nc && !nd && !ne && !nf && ng && nh && !ni && nj && !nk && !nl && nm) aghjm++; 
+if (na && !nb && !nc && !nd && !ne && !nf && ng && !nh && ni && !nj && nk && !nl && nm) agikm++; 
+if (na && !nb && !nc && !nd && !ne && !nf && ng && !nh && ni && !nj && nk && nl && nm) agiklm++; 
 }
 
 /* Input set 1 */
@@ -91,11 +105,13 @@ int main()
 	}
 
 	/* Print out your profiling results here */
-  int intvals[13] = {na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm};
-  for(i=0;i<8;i++) {
-    char c = (char)65+i;
-    printf("%c: %d\n", c, intvals[i]);
-  }  
-	return EXIT_SUCCESS;
+  printf("paths:\n");
+  printf("abcdfm: %d\n",abcdfm);
+  printf("abcekm: %d\n",abcekm);
+  printf("abceklm: %d\n",abceklm);
+  printf("aghjm: %d\n",aghjm);
+  printf("agikm: %d\n",agikm);
+  printf("agiklm: %d\n",agiklm);
+  return EXIT_SUCCESS;
 }
 

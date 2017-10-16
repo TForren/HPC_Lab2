@@ -4,50 +4,39 @@
 
 static unsigned t1, t2, t3, t4;
 
-int na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm;
 
 void func(int a1, int a2, int a3, int a4)
 {
 	int i,j,k;
-  na++;
+
 	if(a1){
-    nb++;
 		i++;
-    nc++;
 		if(a2){
-      nd++;
 			j++;
 		} else {
-      ne++;
 			i++;
 			goto b1;
 		}
 
-    nf++;
 		k++;
 		goto b2;
 	} else {
-    ng++;
 		if(a3){
-      nh++;
 			j++;
 		} else {
-      ni++;
 			k++;
 			goto b1;
 		}
 
-    nj++;
 		k++;
 		goto b2;
 	}
 
-b1: nk++;if(a4){
-    nl++;
+b1: if(a4){
 		j++;
 	}
 
-b2: nm++;k++;
+b2: k++;
 }
 
 /* Input set 1 */
@@ -91,11 +80,7 @@ int main()
 	}
 
 	/* Print out your profiling results here */
-  int intvals[8] = {na,nb,nc,nd,ne,nf,ng,nh,ni,nj,nk,nl,nm};
-  for(i=0;i<8;i++) {
-    char c = (char)65+i;
-    printf("%c: %d\n", c, intvals[i]);
-  }  
+	
 	return EXIT_SUCCESS;
 }
 
